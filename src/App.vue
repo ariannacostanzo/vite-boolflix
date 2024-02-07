@@ -60,10 +60,10 @@
 <template>
   <AppHeader @text-searched="getSearchText"/>
 
-  <div class="placeholder" v-if="!store.movies.length">
+  <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
     <p>Cerca un film o una serie TV</p>
   </div>
-  <div class="container" v-if="store.movies.length">
+  <div class="container" v-if="store.movies.length || store.tvShows.length">
     <AppMain/>
   </div>
   
@@ -86,4 +86,5 @@
 </style>
 
 <!-- risolvere qualsiasi restructuring,
+  se non si trova niente, dire che non è stato trovato niente, fare la chiamata per gli attori
  -->

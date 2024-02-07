@@ -15,10 +15,10 @@ import {store} from '../assets/data/store.js'
 
 <template>
     <section>
-        <MainSection :title="'Movies'" :elements="store.movies" />
+        <MainSection v-if="store.movies.length" :title="'Movies'" :elements="store.movies" />
     </section>
     <section>
-        <MainSection :title="'TV Shows'" :elements="store.tvShows" />
+        <MainSection v-if="store.tvShows.length" :title="'TV Shows'" :elements="store.tvShows" />
     </section>
 </template>
 
