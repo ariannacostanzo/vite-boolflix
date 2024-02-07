@@ -29,34 +29,11 @@
         },
 
         transformRating(vote) {
-            let string;
-            let transformedVote = (vote / 10) * 5
-            transformedVote = Math.round(transformedVote)
+            let transformedVote = Math.round((vote / 10) * 5)
             let fullStars = `<i class="fa-solid fa-star"></i>`
             let emptyStars = `<i class="fa-regular fa-star"></i>`
-            
-            switch(transformedVote) {
-                case 1:
-                    string = fullStars + emptyStars + emptyStars + emptyStars + emptyStars
-                    break;
-                case 2: 
-                    string = fullStars + fullStars + emptyStars + emptyStars + emptyStars
-                    break;
-                case 3:
-                    string = fullStars + fullStars + fullStars + emptyStars + emptyStars
-                    break;
-                case 4:
-                    string = fullStars + fullStars + fullStars + fullStars + emptyStars
-                    break;
-                case 5:
-                    string = fullStars + fullStars + fullStars + fullStars + fullStars
-                    break;
-                default:
-                    string = emptyStars + emptyStars + emptyStars + emptyStars + emptyStars
-
-            }
-
-            return string
+           
+            return `${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
         }
     }
   }
