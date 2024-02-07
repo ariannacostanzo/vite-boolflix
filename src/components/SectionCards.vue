@@ -9,7 +9,7 @@
 </script>
 
 <template>
-    <div v-if="elements.length >= 20" class="row">
+    <div class="row">
         <div v-for="element in elements" :key="element.id" class="card">
             <p><strong>Title: </strong>{{ element.title }}</p>
             <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
