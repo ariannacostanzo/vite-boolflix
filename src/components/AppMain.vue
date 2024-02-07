@@ -9,13 +9,13 @@ import {store} from '../assets/data/store.js'
             store
         }
     },
-    components: {MainSection}
+    components: {MainSection},
   }
 </script>
 
 <template>
-  <MainSection :title="'Movies'" :elements="store.movies"/>
-  <MainSection :title="'TV Shows'" :elements="store.tvShows"/>
+  <MainSection :title="'Movies'" :elements="store.movies" />
+  <MainSection :title="'TV Shows'" :elements="store.tvShows" />
 </template>
 
 <style scoped>

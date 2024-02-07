@@ -6,27 +6,27 @@
         elements: Array
     },
     methods: {
+        //queste funzioni andrebbero centralizzate?
         getLanguageImage(language) {
             let string;
-            const enPath = this.createImagePath('en')
-            const itPath = this.createImagePath('it')
 
             switch(language) {
                 case 'en':
-                    string = `<img class='language-img' src="${enPath}" alt="en">`
+                    string = `<img class='language-img' src="${this.createImagePath('en')}" alt="en">`
                     break;
                 case 'it':
-                    string = `<img class='language-img' src="${itPath}" alt="it">`
+                    string = `<img class='language-img' src="${this.createImagePath('it')}" alt="it">`
                     break;
                 default:
                     string = `<strong>Language: </strong>${language}` 
             }
             return string;
         },
+
         createImagePath(item) {
             const path = new URL(`../assets/images/${item}.png`, import.meta.url);
             return path.href
-  }
+        }
     }
   }
 </script>

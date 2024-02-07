@@ -26,7 +26,7 @@
               id: element.id,
               language: element.original_language,
               title: element.title ? element.title : element.original_name,
-              originalTitle: element.original_title ? element.originalTitle : element.name,
+              originalTitle: element.original_title ? element.original_title : element.name,
               vote: element.vote_average,
               imagePath: element.poster_path,
               summary: element.overview
@@ -41,12 +41,14 @@
         const query = `&query=${this.searchedTerm}`
         const movieEndpoint = baseMovieUrl + query
         const tvEndpoint = baseTvUrl + query
-        
+
         this.fetchData(movieEndpoint, 'movies')
         this.fetchData(tvEndpoint, 'tvShows')
-      }
+      },
+      
 
     },
+
     components: {
       AppHeader, AppMain
     },
