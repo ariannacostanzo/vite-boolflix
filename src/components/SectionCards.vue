@@ -50,6 +50,7 @@ export default {
                     <p class="element-original-title"><strong>Titolo originale: </strong>{{ element.originalTitle }}</p>
                     <p class="element-language" v-html="getLanguageImage(element.language)"></p>
                     <p class="element-stars" v-html="transformRating(element.vote)"></p>
+                    <p class="element-overview"><strong>Trama: <br></strong>{{ element.overview }}</p>
                 </div>
             </figure>
             
@@ -93,6 +94,20 @@ export default {
         width: 342px;
         height: 513px;
         position: relative;
+        
+    }
+
+    ::-webkit-scrollbar {
+    width: 1px;
+    }
+    ::-webkit-scrollbar-track {
+    background: #1b1b1b;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #1b1b1b;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #1b1b1b;
     }
 
     .overlay-info {
@@ -107,6 +122,7 @@ export default {
         font-size: 1.1rem;
         display: none;
         border-radius: 10px;
+        overflow-y: auto;
 
         p {
             padding: .6rem 0;
@@ -114,7 +130,7 @@ export default {
         }
 
         .element-title {
-            font-size: 1.7rem;
+            font-size: 1.9rem;
             font-weight: bold;
             margin-bottom: .2rem;
             text-shadow: 0 0 2px white;
@@ -131,6 +147,10 @@ export default {
 
         .element-stars i {
             color: #e6d151;
+        }
+
+        .element-overview {
+            font-size: .9rem;
         }
     }
 }

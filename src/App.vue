@@ -31,7 +31,7 @@
               originalTitle: element.original_title ? element.original_title : element.name,
               vote: element.vote_average,
               imagePath: element.poster_path ? completeImagePath + element.poster_path : emptyImgUrl,
-              summary: element.overview
+              overview: element.overview
             }
           })
           store.isLoading = false
@@ -84,3 +84,6 @@
     padding: 2rem;
   }
 </style>
+
+<!-- risolvere qualsiasi restructuring,
+ -->
