@@ -44,11 +44,22 @@ export default {
         <div v-for="element in elements" :key="element.id" class="card">
             <figure>
                 <img class="poster" :src="element.imagePath" :alt="element.title">
+
+                <div class="overlay-info">
+                    <p><strong>Title: </strong>{{ element.title }}</p>
+                    <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
+                    <p v-html="getLanguageImage(element.language)"></p>
+                    <p v-html="transformRating(element.vote)"></p>
+                </div>
+
             </figure>
-            <p><strong>Title: </strong>{{ element.title }}</p>
-            <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
-            <p v-html="getLanguageImage(element.language)"></p>
-            <p v-html="transformRating(element.vote)"></p>
+            <!-- <div class="overlay-info">
+                <p><strong>Title: </strong>{{ element.title }}</p>
+                <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
+                <p v-html="getLanguageImage(element.language)"></p>
+                <p v-html="transformRating(element.vote)"></p>
+            </div> -->
+            
 
         </div>
     </div>
@@ -61,7 +72,12 @@ export default {
 
     .card {
         flex-basis: 20%;
-        padding: 1rem 0;
+        padding: 2rem 0;
+        cursor: pointer;
+
+        &:hover .overlay-info {
+            display: block;
+        }
     }
 
     .language-img {
@@ -74,6 +90,21 @@ export default {
         height: 513px;
         border-radius: 10px;
         display: block;
+    }
+
+    figure {
+        position: relative;
+    }
+
+    .overlay-info {
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .7);
+        display: none;
     }
 }
 </style>
