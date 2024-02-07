@@ -11,10 +11,12 @@ import SectionTitle from './SectionTitle.vue'
 </script>
 
 <template>
-  <SectionTitle :title="title"/>
-  <SectionCards :elements="elements"/>
+
+    <SectionTitle :title="title"/>
+    <SectionCards :elements="elements"/>
+
 </template>
 
-<style scoped>
-  /* style here */
+<style lang="scss" scoped>
+    // style
 </style>

@@ -1,6 +1,6 @@
 <script>
 
-  export default {
+export default {
     name: 'SectionCards',
     props: {
         elements: Array
@@ -10,7 +10,7 @@
         getLanguageImage(language) {
             let string;
 
-            switch(language) {
+            switch (language) {
                 case 'en':
                     string = `<img class='language-img' src="${this.createImagePath('en')}" alt="en">`
                     break;
@@ -18,7 +18,7 @@
                     string = `<img class='language-img' src="${this.createImagePath('it')}" alt="it">`
                     break;
                 default:
-                    string = `<strong>Language: </strong>${language}` 
+                    string = `<strong>Language: </strong>${language}`
             }
             return string;
         },
@@ -32,30 +32,30 @@
             let transformedVote = Math.round((vote / 10) * 5)
             let fullStars = `<i class="fa-solid fa-star"></i>`
             let emptyStars = `<i class="fa-regular fa-star"></i>`
-           
+
             return `${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
         }
     }
-  }
+}
 </script>
 
 <template>
     <div class="row">
         <div v-for="element in elements" :key="element.id" class="card">
-            <img class="poster" :src="element.imagePath" :alt="element.title">
+            <figure>
+                <img class="poster" :src="element.imagePath" :alt="element.title">
+            </figure>
             <p><strong>Title: </strong>{{ element.title }}</p>
             <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
             <p v-html="getLanguageImage(element.language)"></p>
             <p v-html="transformRating(element.vote)"></p>
-            
+
         </div>
     </div>
-  
-
 </template>
 
 <style lang="scss">
-  .row {
+.row {
     display: flex;
     flex-wrap: wrap;
 
@@ -66,12 +66,14 @@
 
     .language-img {
         width: 30px;
+        display: block;
     }
 
     .poster {
         width: 342px;
         height: 513px;
         border-radius: 10px;
+        display: block;
     }
-  }
+}
 </style>

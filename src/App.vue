@@ -59,9 +59,28 @@
 
 <template>
   <AppHeader @text-searched="getSearchText"/>
-  <AppMain v-if="store.movies.length" />
+
+  <div class="placeholder" v-if="!store.movies.length">
+    <p>Cerca un film o una serie TV</p>
+  </div>
+  <div class="container" v-if="store.movies.length">
+    <AppMain/>
+  </div>
+  
 </template>
 
 <style lang="scss">
   @import './assets/style/style.scss';
+
+  .placeholder {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .container {
+    padding: 2rem;
+  }
 </style>

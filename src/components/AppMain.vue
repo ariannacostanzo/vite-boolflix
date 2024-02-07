@@ -14,10 +14,16 @@ import {store} from '../assets/data/store.js'
 </script>
 
 <template>
-  <MainSection :title="'Movies'" :elements="store.movies" />
-  <MainSection :title="'TV Shows'" :elements="store.tvShows" />
+    <section>
+        <MainSection :title="'Movies'" :elements="store.movies" />
+    </section>
+    <section>
+        <MainSection :title="'TV Shows'" :elements="store.tvShows" />
+    </section>
 </template>
 
-<style scoped>
-  /* style here */
+<style lang="scss" scoped>
+  section {
+    margin-bottom: 3rem;
+  }
 </style>
