@@ -36,9 +36,7 @@
         }).catch(err => console.log(err))
       },
       getSearchText(item) {
-        // console.log(item);
         this.searchedTerm = item
-        // console.log(this.searchedTerm);
         const endpoint = baseUrl + `&query=${this.searchedTerm}`
         this.fetchData(endpoint, 'movies')
       }
@@ -51,17 +49,7 @@
 </script>
 
 <template>
-
-  
-
-
   <AppHeader @text-searched="getSearchText"/>
-
-  <!-- <div v-if="store.movies.length === 20">
-    <p v-for="movie in store.movies" :key="movie.id">{{ movie.title }}</p>
-    
-  </div>
-   -->
   <AppMain />
 </template>
 
