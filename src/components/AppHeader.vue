@@ -29,6 +29,11 @@
     background-color: black;
     color: #e50914;
     padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 
     form {
       display: flex;
