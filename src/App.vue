@@ -14,6 +14,6 @@
   <AppMain />
 </template>
 
-<style scoped>
-  /* style here */
+<style lang="scss">
+  @import './assets/style/style.scss';
 </style>

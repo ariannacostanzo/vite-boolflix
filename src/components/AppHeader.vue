@@ -5,9 +5,19 @@
 </script>
 
 <template>
-  <h1>AppHeader</h1>
+    <header>
+        <h1>Boolflix</h1>
+        <div>
+            <input type="text">
+            <button>Cerca</button>
+        </div>
+    </header>
 </template>
 
-<style scoped>
-  /* style here */
+<style lang="scss" scoped>
+  header {
+    display: flex;
+    align-items: center;
+    
+  }
 </style>

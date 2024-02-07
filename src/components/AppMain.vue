@@ -1,11 +1,14 @@
 <script>
+import MainSection from './MainSection.vue';
   export default {
-    name: 'AppMain'
+    name: 'AppMain',
+    components: {MainSection}
   }
 </script>
 
 <template>
-  <h1>AppMain</h1>
+  <MainSection />
+  <MainSection />
 </template>
 
 <style scoped>
