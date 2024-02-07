@@ -1,5 +1,6 @@
 <script>
 import MainSection from './MainSection.vue';
+
   export default {
     name: 'AppMain',
     components: {MainSection}

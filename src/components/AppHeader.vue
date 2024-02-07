@@ -7,10 +7,10 @@
 <template>
     <header>
         <h1>Boolflix</h1>
-        <div>
+        <form>
             <input type="text">
             <button>Cerca</button>
-        </div>
+        </form>
     </header>
 </template>
 
@@ -18,6 +18,6 @@
   header {
     display: flex;
     align-items: center;
-    
+
   }
 </style>
