@@ -20,7 +20,8 @@
         axios.get(endpoint).then(res => {
           
           //raccolgo i risultati all'interno di store.Container (ovvero l'array che scelgo)
-          // console.log(res.data.results)
+          const completeImagePath = `https://image.tmdb.org/t/p/w342/`
+
           store[container] = res.data.results.map((element) => {
             return {
               id: element.id,
@@ -28,7 +29,7 @@
               title: element.title ? element.title : element.original_name,
               originalTitle: element.original_title ? element.original_title : element.name,
               vote: element.vote_average,
-              imagePath: element.poster_path,
+              imagePath: element.poster_path ? completeImagePath + element.poster_path : 'https://s3-ap-southeast-1.amazonaws.com/popcornsg/placeholder-movieimage.png',
               summary: element.overview
             }
           })

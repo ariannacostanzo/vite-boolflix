@@ -34,6 +34,7 @@
 <template>
     <div class="row">
         <div v-for="element in elements" :key="element.id" class="card">
+            <img class="poster" :src="element.imagePath" :alt="element.title">
             <p><strong>Title: </strong>{{ element.title }}</p>
             <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
             <p v-html="getLanguageImage(element.language)"></p>
@@ -57,6 +58,12 @@
 
     .language-img {
         width: 30px;
+    }
+
+    .poster {
+        width: 342px;
+        height: 513px;
+        border-radius: 10px;
     }
   }
 </style>
