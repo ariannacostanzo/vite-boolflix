@@ -29,9 +29,34 @@
         },
 
         transformRating(vote) {
-            const transformedVote = (vote / 10) * 5
-            console.log(Math.round(transformedVote))
-            return Math.round(transformedVote)
+            let string;
+            let transformedVote = (vote / 10) * 5
+            transformedVote = Math.round(transformedVote)
+            let fullStars = `<i class="fa-solid fa-star"></i>`
+            let emptyStars = `<i class="fa-regular fa-star"></i>`
+            
+            switch(transformedVote) {
+                case 1:
+                    string = fullStars + emptyStars + emptyStars + emptyStars + emptyStars
+                    break;
+                case 2: 
+                    string = fullStars + fullStars + emptyStars + emptyStars + emptyStars
+                    break;
+                case 3:
+                    string = fullStars + fullStars + fullStars + emptyStars + emptyStars
+                    break;
+                case 4:
+                    string = fullStars + fullStars + fullStars + fullStars + emptyStars
+                    break;
+                case 5:
+                    string = fullStars + fullStars + fullStars + fullStars + fullStars
+                    break;
+                default:
+                    string = emptyStars + emptyStars + emptyStars + emptyStars + emptyStars
+
+            }
+
+            return string
         }
     }
   }
@@ -44,7 +69,7 @@
             <p><strong>Title: </strong>{{ element.title }}</p>
             <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
             <p v-html="getLanguageImage(element.language)"></p>
-            <p v-text="transformRating(element.vote)"> </p>
+            <p v-html="transformRating(element.vote)"></p>
             
         </div>
     </div>
