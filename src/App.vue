@@ -1,12 +1,17 @@
 <script>
-  // import something from './components/';
+  import AppHeader from './components/AppHeader.vue'
+  import AppMain from './components/AppMain.vue'
   export default {
-    name: ''
+    name: 'App',
+    components: {
+      AppHeader, AppMain
+    }
   }
 </script>
 
 <template>
-  <h1>Boolflix</h1>
+  <AppHeader />
+  <AppMain />
 </template>
 
 <style scoped>
