@@ -18,7 +18,7 @@ export default {
                     string = `<img class='language-img' src="${this.createImagePath('it')}" alt="it">`
                     break;
                 default:
-                    string = `<strong>Language: </strong>${language}`
+                    string = `<strong>Lingua: </strong>${language}`
             }
             return string;
         },
@@ -33,7 +33,7 @@ export default {
             let fullStars = `<i class="fa-solid fa-star"></i>`
             let emptyStars = `<i class="fa-regular fa-star"></i>`
 
-            return `${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
+            return `<strong>Voto: </strong>${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
         }
     }
 }
@@ -46,19 +46,12 @@ export default {
                 <img class="poster" :src="element.imagePath" :alt="element.title">
 
                 <div class="overlay-info">
-                    <p><strong>Title: </strong>{{ element.title }}</p>
-                    <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
-                    <p v-html="getLanguageImage(element.language)"></p>
-                    <p v-html="transformRating(element.vote)"></p>
+                    <p class="element-title">{{ element.title }}</p>
+                    <p class="element-original-title"><strong>Titolo originale: </strong>{{ element.originalTitle }}</p>
+                    <p class="element-language" v-html="getLanguageImage(element.language)"></p>
+                    <p class="element-stars" v-html="transformRating(element.vote)"></p>
                 </div>
-
             </figure>
-            <!-- <div class="overlay-info">
-                <p><strong>Title: </strong>{{ element.title }}</p>
-                <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
-                <p v-html="getLanguageImage(element.language)"></p>
-                <p v-html="transformRating(element.vote)"></p>
-            </div> -->
             
 
         </div>
@@ -67,12 +60,15 @@ export default {
 
 <style lang="scss">
 .row {
+    padding: 0 8rem;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    color: white;
 
     .card {
-        flex-basis: 20%;
-        padding: 2rem 0;
+        flex-basis: 25%;
+        padding: 2rem 1rem;
         cursor: pointer;
 
         &:hover .overlay-info {
@@ -81,8 +77,9 @@ export default {
     }
 
     .language-img {
-        width: 30px;
+        width: 45px;
         display: block;
+        margin: 0 auto;
     }
 
     .poster {
@@ -93,6 +90,8 @@ export default {
     }
 
     figure {
+        width: 342px;
+        height: 513px;
         position: relative;
     }
 
@@ -103,8 +102,36 @@ export default {
         top: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, .7);
+        background-color: rgba(0, 0, 0, .9);
+        padding: 1rem;
+        font-size: 1.1rem;
         display: none;
+        border-radius: 10px;
+
+        p {
+            padding: .6rem 0;
+            
+        }
+
+        .element-title {
+            font-size: 1.7rem;
+            font-weight: bold;
+            margin-bottom: .2rem;
+            text-shadow: 0 0 2px white;
+            
+        }
+
+        .element-original-title {
+            font-size: .9rem;
+        }
+
+        .element-language{
+            font-size: .9rem;
+        }
+
+        .element-stars i {
+            color: #e6d151;
+        }
     }
 }
 </style>

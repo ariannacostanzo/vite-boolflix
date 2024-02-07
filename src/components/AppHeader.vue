@@ -15,7 +15,7 @@
         <h1>Boolflix</h1>
         <form @submit.prevent="$emit('text-searched', searchedText)">
             <input type="text" v-model.trim="searchedText">
-            <button>Search</button>
+            <button>Cerca</button>
         </form>
     </header>
 </template>
