@@ -26,6 +26,12 @@
         createImagePath(item) {
             const path = new URL(`../assets/images/${item}.png`, import.meta.url);
             return path.href
+        },
+
+        transformRating(vote) {
+            const transformedVote = (vote / 10) * 5
+            console.log(Math.round(transformedVote))
+            return Math.round(transformedVote)
         }
     }
   }
@@ -38,7 +44,7 @@
             <p><strong>Title: </strong>{{ element.title }}</p>
             <p><strong>Original title: </strong>{{ element.originalTitle }}</p>
             <p v-html="getLanguageImage(element.language)"></p>
-            <p><strong>Vote: </strong>{{ element.vote }}</p>
+            <p v-text="transformRating(element.vote)"> </p>
             
         </div>
     </div>
