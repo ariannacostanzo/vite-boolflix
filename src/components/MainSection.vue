@@ -2,15 +2,17 @@
     
 import SectionCards from './SectionCards.vue'
 import SectionTitle from './SectionTitle.vue'
+
   export default {
     name: 'MainSection',
-    components: {SectionCards, SectionTitle}
+    components: {SectionCards, SectionTitle},
+    props: {title:String, elements: Array}
   }
 </script>
 
 <template>
-  <SectionTitle/>
-  <SectionCards/>
+  <SectionTitle :title="title"/>
+  <SectionCards :elements="elements"/>
 </template>
 
 <style scoped>

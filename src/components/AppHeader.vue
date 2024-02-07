@@ -14,8 +14,8 @@
     <header>
         <h1>Boolflix</h1>
         <form @submit.prevent="$emit('text-searched', searchedText)">
-            <input type="text" v-model="searchedText">
-            <button>Cerca</button>
+            <input type="text" v-model.trim="searchedText">
+            <button>Search</button>
         </form>
     </header>
 </template>

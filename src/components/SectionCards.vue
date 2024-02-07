@@ -1,11 +1,24 @@
 <script>
+
   export default {
-    name: 'SectionCards'
+    name: 'SectionCards',
+    props: {
+        elements: Array
+    }
   }
 </script>
 
 <template>
-  <h1>Cards</h1>
+    <div v-if="elements.length >= 20" class="row">
+        <div v-for="element in elements" :key="element.id" class="card">
+            <p>{{ element.title }}</p>
+            <p> {{ element.original_title }}</p>
+            <p>{{ element.language }}</p>
+            <p> {{ element.vote }}</p>
+        </div>
+    </div>
+  
+
 </template>
 
 <style scoped>

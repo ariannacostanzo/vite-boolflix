@@ -1,11 +1,12 @@
 <script>
   export default {
-    name: 'SectionTitle'
+    name: 'SectionTitle',
+    props: {title: String}
   }
 </script>
 
 <template>
-  <h1>Title</h1>
+  <h1>{{ title }}</h1>
 </template>
 
 <style scoped>

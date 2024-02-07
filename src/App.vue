@@ -10,7 +10,8 @@
     name: 'App',
     data() {
       return {
-        searchedTerm: ''
+        searchedTerm: '',
+        store
       }
     },
     methods: { 
@@ -51,9 +52,16 @@
 
 <template>
 
+  
 
 
   <AppHeader @text-searched="getSearchText"/>
+
+  <!-- <div v-if="store.movies.length === 20">
+    <p v-for="movie in store.movies" :key="movie.id">{{ movie.title }}</p>
+    
+  </div>
+   -->
   <AppMain />
 </template>
 
