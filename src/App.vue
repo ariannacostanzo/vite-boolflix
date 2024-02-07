@@ -3,6 +3,8 @@
   import AppHeader from './components/AppHeader.vue';
   import AppMain from './components/AppMain.vue';
 
+  const baseUrl = 'https://api.themoviedb.org/3/search/movie?api_key=7a52c80d921a51f7f218955a9737d1d2&language=it-IT'
+
   export default {
     name: 'App',
     methods: { 
@@ -10,6 +12,9 @@
         axios.get(endpoint).then(res => {
           console.log(res.data.results)
         })
+      },
+      readHeader(item) {
+        console.log(item)
       }
 
     },
@@ -17,13 +22,13 @@
       AppHeader, AppMain
     },
     created() {
-      this.fetchData('https://api.themoviedb.org/3/search/movie?query=monster&api_key=7a52c80d921a51f7f218955a9737d1d2&language=it-IT')
+      this.fetchData(baseUrl + `&query=pippo`)
     }
   }
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @text-searched="readHeader"/>
   <AppMain />
 </template>
 
