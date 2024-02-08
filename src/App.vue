@@ -29,6 +29,8 @@
             }
           })
 
+        
+
         }).catch(err => console.log(err)).then(() => {
           store.isLoading = false
         })
@@ -42,28 +44,30 @@
         // console.log(searchTvEndpoint)
         this.fetchData(searchMovieEndpoint, 'movies')
         this.fetchData(searchTvEndpoint, 'tvShows')
+        this.fetchActors('movie', 'movieActors')
+        this.fetchActors('tv', 'tvShowsActors')
       },
       //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
       cambioTermine(term) {
-        console.log('funziona', term)
-        this.fetchActors()
+        // console.log('funziona', term)
+        // this.fetchActors()
       },
       //rendo dinamica la mia url con una funzione
       getCollectionUrl(mode, collection, term) {
         const {baseUrl, apiKey, apiLanguage } = store.urlConfig
 
         const url =  `${baseUrl}/${mode}/${collection}?api_key=${apiKey}&language=${apiLanguage}&query=${term}`
-        console.log(this.searchedTerm)
         return url
       },
-      fetchActors() {
-        const actorsEndpoint = this.getActorsUrl('movie', 597)
-
+      fetchActors(mode, collection) {
+        const actorsEndpoint = this.getActorsUrl(mode, 597)
         axios.get(actorsEndpoint).then(res => {
-          for (let i = 0; i< 5; i++) {
-
-            console.log(res.data.cast[i])
-          }
+          
+          const firstFiveActors = res.data.cast.slice(0,5);
+          store[collection] = firstFiveActors
+          
+          console.log(store.movieActors)
+          console.log(store.tvShowsActors)
         })
       },
       getActorsUrl(collection, movieId) {
