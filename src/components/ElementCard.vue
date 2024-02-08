@@ -21,7 +21,6 @@
             return `<strong style="color: white;">Voto: </strong>${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
         }
     }
-
   }
 </script>
 

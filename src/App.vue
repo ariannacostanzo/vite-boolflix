@@ -65,6 +65,7 @@
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
     <p>Cerca un film o una serie TV</p>
   </div>
+  
   <div class="container" v-if="store.movies.length || store.tvShows.length">
     <AppMain/>
   </div>

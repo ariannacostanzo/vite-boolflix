@@ -1,26 +1,17 @@
 <script>
+import SearchForm from './SearchForm.vue';
   export default {
     name: 'AppHeader',
-    data() {
-        return {
-            searchedText: ''
-        }
-    },
-    emits: ['text-searched']
+    components: {SearchForm},
+    emits: ['text-searched'],
+
   }
 </script>
 
 <template>
     <header>
         <h1>Boolflix</h1>
-        <!-- da dividere e rendere dumb -->
-        <!-- fare su input un keyup con emit termchange che passa fino ad app
-        mi faccio un metodo che mi tiene aggiornato il data titlefilter che metto nell'app
-        in modo che ce l'ho in tempo reale -->
-        <form @submit.prevent="$emit('text-searched', searchedText)">
-            <input type="text" v-model.trim="searchedText">
-            <button>Cerca</button>
-        </form>
+        <SearchForm @text-searched="$emit('text-searched', $event)" :button-label="'Cerca'"/>
     </header>
 </template>
 
