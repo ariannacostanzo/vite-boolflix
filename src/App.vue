@@ -25,7 +25,7 @@
               title: element.title ? element.title : element.name,
               originalTitle: element.original_title ? element.original_title : element.original_name,
               vote: element.vote_average,
-              imagePath: element.poster_path ? store.completeImagePath + element.poster_path : store.emptyImgUrl,
+              imagePath: element.poster_path ? store.baseImagePath + element.poster_path : store.emptyImgUrl,
               overview: element.overview
             }
           })
@@ -39,8 +39,8 @@
         this.searchedTerm = item
         const searchMovieEndpoint = this.getUrl('search', 'movie', this.searchedTerm)
         const searchTvEndpoint = this.getUrl('search', 'tv', this.searchedTerm)
-        console.log(searchMovieEndpoint)
-        console.log(searchTvEndpoint)
+        // console.log(searchMovieEndpoint)
+        // console.log(searchTvEndpoint)
         this.fetchData(searchMovieEndpoint, 'movies')
         this.fetchData(searchTvEndpoint, 'tvShows')
       },
@@ -56,10 +56,7 @@
         console.log(this.searchedTerm)
         return url
       }
-      
-
     },
-
     components: {
       AppHeader, AppMain
     },
@@ -71,6 +68,7 @@
   dopo aver stabilito questo rimuoverò o text-searched o term-changed  -->
   <AppHeader @text-searched="getSearchText" @term-changed="cambioTermine"/>
 
+  <!-- fare un dumb component di questo? -->
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
     <p>Cerca un film o una serie TV</p>
   </div>
@@ -99,4 +97,4 @@
 
 <!-- risolvere qualsiasi restructuring, aggiungere bandiere per le lingue
   se non si trova niente, dire che non è stato trovato niente, fare la chiamata per gli attori
- fare il loader, sistemare la query per rendere dinamico anche search/movie, search cambia -->
+ fare il loader,-->

@@ -1,16 +1,16 @@
 <script>
-  export default {
+export default {
     name: 'ElementCard',
     props: {
         element: Object
     },
     computed: {
-        imagePath(){
+        imagePath() {
             const path = new URL(`../assets/images/${this.element.language}.png`, import.meta.url);
             return path.href
         },
         hasFlag() {
-            const languages = ['it', 'en']
+            const languages = ['it', 'en', 'es', 'ko', 'fr']
             return languages.includes(this.element.language)
         },
         starRating() {
@@ -21,7 +21,7 @@
             return `<strong style="color: white;">Voto: </strong>${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
         }
     }
-  }
+}
 </script>
 
 <template>
@@ -31,7 +31,7 @@
             <div class="overlay-info">
                 <p class="element-title">{{ element.title }}</p>
                 <p class="element-original-title"><strong>Titolo originale: </strong>{{ element.originalTitle }}</p>
-                <img class="language-img" :src="imagePath" v-if="hasFlag" >
+                <img class="language-img" :src="imagePath" v-if="hasFlag">
                 <p class="element-language" v-else>{{ element.language }}</p>
                 <p class="element-stars" v-html="starRating"></p>
                 <p class="element-overview"><strong>Trama: <br></strong>{{ element.overview }}</p>
@@ -41,7 +41,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 // perchè a .element-stars i  color: yellow non funziona?
 .card {
     flex-basis: 25%;
@@ -53,10 +52,10 @@
     }
 
     .language-img {
-    width: 45px;
-    display: block;
-    margin: .4rem auto;
-    
+        width: 45px;
+        display: block;
+        margin: .4rem auto;
+
     }
 
     .poster {
@@ -70,20 +69,23 @@
         width: 342px;
         height: 513px;
         position: relative;
-        
+
     }
 
     ::-webkit-scrollbar {
-    width: 1px;
+        width: 1px;
     }
+
     ::-webkit-scrollbar-track {
-    background: #1b1b1b;
+        background: #1b1b1b;
     }
+
     ::-webkit-scrollbar-thumb {
-    background: #1b1b1b;
+        background: #1b1b1b;
     }
+
     ::-webkit-scrollbar-thumb:hover {
-    background: #1b1b1b;
+        background: #1b1b1b;
     }
 
     .overlay-info {
@@ -100,49 +102,49 @@
         border-radius: 10px;
         overflow-y: auto;
 
-        
+
     }
 
     p {
         padding: .6rem 0;
-            
+
     }
-    
+
     strong {
         color: white;
     }
+
     .element-title {
         font-size: 1.9rem;
         font-weight: bold;
         margin-bottom: .2rem;
         text-shadow: 0 0 2px white;
-        
+
     }
 
     .element-original-title {
         font-size: .9rem;
     }
 
-    .element-language{
+    .element-language {
         font-size: .9rem;
     }
 
     .element-stars {
 
         color: #e6d151;
-        
+
     }
+
     // .element-stars i {
 
     //     color: #e6d151;
-        
+
     // }
 
-    
+
     .element-overview {
         font-size: .9rem;
     }
 }
-
-  
 </style>
