@@ -31,25 +31,5 @@ import SearchForm from './SearchForm.vue';
     right: 0;
     z-index: 1;
 
-    form {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-
-      input {
-        padding: .3rem;
-      }
-
-      button {
-        cursor: pointer;
-        padding: 8px 14px;
-        font-weight: bold;
-        border-radius: 5px;
-        border: 0;
-        background-color: #e50914;
-        color: white;
-      }
-    }
-
   }
 </style>
