@@ -3,7 +3,8 @@ import SearchForm from './SearchForm.vue';
   export default {
     name: 'AppHeader',
     components: {SearchForm},
-    emits: ['text-searched'],
+    emits: ['text-searched', 'term-changed'],
+    
 
   }
 </script>
@@ -11,7 +12,7 @@ import SearchForm from './SearchForm.vue';
 <template>
     <header>
         <h1>Boolflix</h1>
-        <SearchForm @text-searched="$emit('text-searched', $event)" :button-label="'Cerca'"/>
+        <SearchForm @text-searched="$emit('text-searched', $event)" :button-label="'Cerca'" @term-changed="$emit('term-changed', $event)"/>
     </header>
 </template>
 

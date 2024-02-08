@@ -27,8 +27,8 @@
             return {
               id: element.id,
               language: element.original_language,
-              title: element.title ? element.title : element.original_name,
-              originalTitle: element.original_title ? element.original_title : element.name,
+              title: element.title ? element.title : element.name,
+              originalTitle: element.original_title ? element.original_title : element.original_name,
               vote: element.vote_average,
               imagePath: element.poster_path ? completeImagePath + element.poster_path : emptyImgUrl,
               overview: element.overview
@@ -49,6 +49,10 @@
         this.fetchData(movieEndpoint, 'movies')
         this.fetchData(tvEndpoint, 'tvShows')
       },
+      //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
+      cambioTermine(term) {
+        console.log('funziona', term)
+      }
       
 
     },
@@ -60,12 +64,14 @@
 </script>
 
 <template>
-  <AppHeader @text-searched="getSearchText"/>
+  <!-- quale funzionamento voglio? che appena scrivo qualcosa chiamo subito la Api o che la chiamo quando finisco di scrivere?
+  dopo aver stabilito questo rimuoverò o text-searched o term-changed  -->
+  <AppHeader @text-searched="getSearchText" @term-changed="getSearchText"/>
 
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
     <p>Cerca un film o una serie TV</p>
   </div>
-  
+
   <div class="container" v-if="store.movies.length || store.tvShows.length">
     <AppMain/>
   </div>
@@ -88,6 +94,6 @@
   }
 </style>
 
-<!-- risolvere qualsiasi restructuring,
+<!-- risolvere qualsiasi restructuring, aggiungere bandiere per le lingue
   se non si trova niente, dire che non è stato trovato niente, fare la chiamata per gli attori
  fare il loader, sistemare la query per rendere dinamico anche search/movie, search cambia -->

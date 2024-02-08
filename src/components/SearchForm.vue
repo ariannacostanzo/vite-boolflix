@@ -6,7 +6,7 @@
             searchedText: ''
         }
     },
-    emits: ['text-searched'],
+    emits: ['text-searched', 'term-changed'],
     props: {
         buttonLabel: String
     }
@@ -15,7 +15,7 @@
 
 <template>
   <form @submit.prevent="$emit('text-searched', searchedText)">
-        <input type="text" v-model.trim="searchedText">
+        <input type="text" v-model.trim="searchedText" @keyup="$emit('term-changed', searchedText)">
         <button>{{ buttonLabel }}</button>
     </form>
 </template>
