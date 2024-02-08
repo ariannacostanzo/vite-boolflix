@@ -10,7 +10,7 @@ export default {
             return path.href
         },
         hasFlag() {
-            const languages = ['it', 'en', 'es', 'ko', 'fr']
+            const languages = ['it', 'en', 'es', 'ko', 'fr', 'ja', 'ru', 'ar', 'pt', 'zh', 'tl', 'hi', 'id', 'ta', 'tr', 'sv', 'el']
             return languages.includes(this.element.language)
         },
         starRating() {

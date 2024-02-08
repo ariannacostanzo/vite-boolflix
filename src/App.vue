@@ -66,7 +66,7 @@
 <template>
   <!-- quale funzionamento voglio? che appena scrivo qualcosa chiamo subito la Api o che la chiamo quando finisco di scrivere?
   dopo aver stabilito questo rimuoverò o text-searched o term-changed  -->
-  <AppHeader @text-searched="getSearchText" @term-changed="cambioTermine"/>
+  <AppHeader @text-searched="getSearchText" @term-changed="getSearchText"/>
 
   <!-- fare un dumb component di questo? -->
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
