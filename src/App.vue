@@ -16,14 +16,14 @@
       }
     },
     methods: { 
-      fetchData(endpoint, container) {
+      fetchData(endpoint, collection) {
         store.isLoading = true
         axios.get(endpoint).then(res => {
           
-          //raccolgo i risultati all'interno di store.Container (ovvero l'array che scelgo)
+          //raccolgo i risultati all'interno di store.collection (ovvero l'array che scelgo)
           const completeImagePath = `https://image.tmdb.org/t/p/w342/`
 
-          store[container] = res.data.results.map((element) => {
+          store[collection] = res.data.results.map((element) => {
             return {
               id: element.id,
               language: element.original_language,
@@ -34,13 +34,15 @@
               overview: element.overview
             }
           })
-          store.isLoading = false
 
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err)).then(() => {
+          store.isLoading = false
+        })
       },
       getSearchText(item) {
         this.searchedTerm = item
         const query = `&query=${this.searchedTerm}`
+        //da cambiare la query
         const movieEndpoint = baseMovieUrl + query
         const tvEndpoint = baseTvUrl + query
 
@@ -87,4 +89,4 @@
 
 <!-- risolvere qualsiasi restructuring,
   se non si trova niente, dire che non è stato trovato niente, fare la chiamata per gli attori
- -->
+ fare il loader, sistemare la query per rendere dinamico anche search/movie, search cambia -->

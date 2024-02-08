@@ -13,6 +13,10 @@
 <template>
     <header>
         <h1>Boolflix</h1>
+        <!-- da dividere e rendere dumb -->
+        <!-- fare su input un keyup con emit termchange che passa fino ad app
+        mi faccio un metodo che mi tiene aggiornato il data titlefilter che metto nell'app
+        in modo che ce l'ho in tempo reale -->
         <form @submit.prevent="$emit('text-searched', searchedText)">
             <input type="text" v-model.trim="searchedText">
             <button>Cerca</button>
@@ -38,7 +42,7 @@
     form {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 15px;
 
       input {
         padding: .3rem;
@@ -46,10 +50,12 @@
 
       button {
         cursor: pointer;
-        padding: 5px 10px;
+        padding: 8px 14px;
         font-weight: bold;
         border-radius: 5px;
         border: 0;
+        background-color: #e50914;
+        color: white;
       }
     }
 
