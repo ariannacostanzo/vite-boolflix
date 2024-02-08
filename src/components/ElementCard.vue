@@ -19,7 +19,7 @@ export default {
             let emptyStars = `<i class="fa-regular fa-star"></i>`
 
             return `<strong style="color: white;">Voto: </strong>${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
-        }
+        },
     }
 }
 </script>
@@ -35,6 +35,7 @@ export default {
                 <p class="element-language" v-else>{{ element.language }}</p>
                 <p class="element-stars" v-html="starRating"></p>
                 <p class="element-overview"><strong>Trama: <br></strong>{{ element.overview }}</p>
+                <p>{{ element.id }}</p>
             </div>
         </figure>
     </div>

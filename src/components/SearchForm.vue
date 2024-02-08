@@ -17,7 +17,7 @@
   <form @submit.prevent="$emit('text-searched', searchedText)">
         <input type="text" v-model.trim="searchedText" @keyup="$emit('term-changed', searchedText)">
         <button>{{ buttonLabel }}</button>
-    </form>
+  </form>
 </template>
 
 <style lang="scss" scoped>

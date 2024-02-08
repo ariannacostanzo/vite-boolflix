@@ -17,7 +17,6 @@
         store.isLoading = true
         axios.get(endpoint).then(res => {
           
-
           store[collection] = res.data.results.map((element) => {
             return {
               id: element.id,
@@ -37,8 +36,8 @@
       //salvo il testo scritto nei miei data, ottengo le url che mi servono e chiamo le api relative
       getSearchText(item) {
         this.searchedTerm = item
-        const searchMovieEndpoint = this.getUrl('search', 'movie', this.searchedTerm)
-        const searchTvEndpoint = this.getUrl('search', 'tv', this.searchedTerm)
+        const searchMovieEndpoint = this.getCollectionUrl('search', 'movie', this.searchedTerm)
+        const searchTvEndpoint = this.getCollectionUrl('search', 'tv', this.searchedTerm)
         // console.log(searchMovieEndpoint)
         // console.log(searchTvEndpoint)
         this.fetchData(searchMovieEndpoint, 'movies')
@@ -47,13 +46,29 @@
       //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
       cambioTermine(term) {
         console.log('funziona', term)
+        this.fetchActors()
       },
       //rendo dinamica la mia url con una funzione
-      getUrl(mode, collection, term) {
+      getCollectionUrl(mode, collection, term) {
         const {baseUrl, apiKey, apiLanguage } = store.urlConfig
 
         const url =  `${baseUrl}/${mode}/${collection}?api_key=${apiKey}&language=${apiLanguage}&query=${term}`
         console.log(this.searchedTerm)
+        return url
+      },
+      fetchActors() {
+        const actorsEndpoint = this.getActorsUrl('movie', 597)
+
+        axios.get(actorsEndpoint).then(res => {
+          for (let i = 0; i< 5; i++) {
+
+            console.log(res.data.cast[i])
+          }
+        })
+      },
+      getActorsUrl(collection, movieId) {
+        const {baseUrl, apiKey} = store.urlConfig
+        const url =  `${baseUrl}/${collection}/${movieId}/credits?api_key=${apiKey}`
         return url
       }
     },
@@ -66,7 +81,7 @@
 <template>
   <!-- quale funzionamento voglio? che appena scrivo qualcosa chiamo subito la Api o che la chiamo quando finisco di scrivere?
   dopo aver stabilito questo rimuoverò o text-searched o term-changed  -->
-  <AppHeader @text-searched="getSearchText" @term-changed="getSearchText"/>
+  <AppHeader @text-searched="getSearchText" @term-changed="cambioTermine"/>
 
   <!-- fare un dumb component di questo? -->
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
