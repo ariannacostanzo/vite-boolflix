@@ -26,7 +26,8 @@
               originalTitle: e.original_title ? e.original_title : e.original_name,
               vote: e.vote_average,
               imagePath: e.poster_path ? baseImagePath + e.poster_path : emptyImgUrl,
-              overview: e.overview
+              overview: e.overview,
+              genre: e.genre_ids
             }
           })
         }).catch(err => console.log(err)).then(() => {
@@ -40,6 +41,8 @@
         const searchTvEndpoint = this.getCollectionUrl('search', 'tv', this.searchedTerm)
         this.fetchData(searchMovieEndpoint, 'movies')
         this.fetchData(searchTvEndpoint, 'tvShows')
+        this.fetchGenres('movie', 'movieGenres')
+        this.fetchGenres('tv', 'tvGenres')
       },
       //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
       cambioTermine(term) {
@@ -52,6 +55,15 @@
         const url =  `${baseUrl}/${mode}/${collection}?api_key=${apiKey}&language=${apiLanguage}&query=${term}`
         return url
       },
+      //storing genres of movie and tv in store
+      fetchGenres(mode, collection) {
+        const {baseUrl, apiKey, apiLanguage } = dataUrlConfig
+        const url = `${baseUrl}/genre/${mode}/list?api_key=${apiKey}&language=${apiLanguage}`
+        axios.get(url).then((res) => {
+          store[collection] = res.data.genres
+          console.log(store[collection])
+        })
+      }
     },
     components: {
       AppHeader, AppMain

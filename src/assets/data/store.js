@@ -5,5 +5,7 @@ export const store = reactive({
     tvShows: [],
     isLoading: false,
     movieActors: [],
-    tvShowsActors: []
+    tvShowsActors: [],
+    movieGenres: [],
+    tvGenres: [],
 })

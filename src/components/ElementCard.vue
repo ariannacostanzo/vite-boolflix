@@ -43,7 +43,6 @@ export default {
             axios.get(url).then(res => {
                 const firstFiveActors = res.data.cast.slice(0, 5);
                 const actorsName = firstFiveActors.map((actor) => {
-                    console.log(res)
                     return actor.name
                 })
                 this.actorsName = actorsName
