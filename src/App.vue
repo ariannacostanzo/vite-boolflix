@@ -3,7 +3,7 @@
   import AppHeader from './components/AppHeader.vue';
   import AppMain from './components/AppMain.vue';
   import {store} from './assets/data/store.js'
-
+  import {dataUrlConfig, emptyImgUrl, baseImagePath} from './assets/data/data'
   export default {
     name: 'App',
     data() {
@@ -17,20 +17,18 @@
         store.isLoading = true
         axios.get(endpoint).then(res => {
           
-          store[collection] = res.data.results.map((element) => {
+          store[collection] = res.data.results.map((e) => {
             return {
-              id: element.id,
-              language: element.original_language,
-              title: element.title ? element.title : element.name,
-              originalTitle: element.original_title ? element.original_title : element.original_name,
-              vote: element.vote_average,
-              imagePath: element.poster_path ? store.baseImagePath + element.poster_path : store.emptyImgUrl,
-              overview: element.overview
+              id: e.id,
+              language: e.original_language,
+              //posso farlo anche così, o questo o questo
+              title: e.title || e.name,
+              originalTitle: e.original_title ? e.original_title : e.original_name,
+              vote: e.vote_average,
+              imagePath: e.poster_path ? baseImagePath + e.poster_path : emptyImgUrl,
+              overview: e.overview
             }
           })
-
-        
-
         }).catch(err => console.log(err)).then(() => {
           store.isLoading = false
         })
@@ -50,11 +48,11 @@
       //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
       cambioTermine(term) {
         // console.log('funziona', term)
-        // this.fetchActors()
+        this.fetchActors('movie', store.movieActors)
       },
       //rendo dinamica la mia url con una funzione
       getCollectionUrl(mode, collection, term) {
-        const {baseUrl, apiKey, apiLanguage } = store.urlConfig
+        const {baseUrl, apiKey, apiLanguage } = dataUrlConfig
 
         const url =  `${baseUrl}/${mode}/${collection}?api_key=${apiKey}&language=${apiLanguage}&query=${term}`
         return url
@@ -66,12 +64,12 @@
           const firstFiveActors = res.data.cast.slice(0,5);
           store[collection] = firstFiveActors
           
-          console.log(store.movieActors)
-          console.log(store.tvShowsActors)
-        })
+          // console.log(store.movieActors)
+          // console.log(store.tvShowsActors)
+        }).catch(err => console.log(err))
       },
       getActorsUrl(collection, movieId) {
-        const {baseUrl, apiKey} = store.urlConfig
+        const {baseUrl, apiKey} = dataUrlConfig
         const url =  `${baseUrl}/${collection}/${movieId}/credits?api_key=${apiKey}`
         return url
       }

@@ -2,7 +2,8 @@
 export default {
     name: 'ElementCard',
     props: {
-        element: Object
+        element: Object,
+        type: String,
     },
     computed: {
         imagePath() {
@@ -14,13 +15,17 @@ export default {
             return languages.includes(this.element.language)
         },
         starRating() {
-            let transformedVote = Math.round((this.element.vote / 10) * 5)
+            let transformedVote = Math.ceil((this.element.vote / 10) * 5)
             let fullStars = `<i class="fa-solid fa-star"></i>`
             let emptyStars = `<i class="fa-regular fa-star"></i>`
 
             return `<strong style="color: white;">Voto: </strong>${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
         },
-    }
+        type() {
+            return this.type
+        }
+
+    },
 }
 </script>
 
@@ -33,9 +38,11 @@ export default {
                 <p class="element-original-title"><strong>Titolo originale: </strong>{{ element.originalTitle }}</p>
                 <img class="language-img" :src="imagePath" v-if="hasFlag">
                 <p class="element-language" v-else>{{ element.language }}</p>
+                <!-- potevo anche fare un v-for e poi un ternario della classe fa-solid o regular -->
+                <!-- <p> <i v-for="n in 5" :key="n" class="fa-star" :class="n <= vote ? 'fas' : 'far'"></i></p> -->
                 <p class="element-stars" v-html="starRating"></p>
                 <p class="element-overview"><strong>Trama: <br></strong>{{ element.overview }}</p>
-                <p>{{ element.id }}</p>
+                <!-- <p>{{ element.id }}</p> -->
             </div>
         </figure>
     </div>
