@@ -5,22 +5,28 @@ import {store} from '../assets/data/store.js'
     data() {
         return {
             searchedText: '',
-            store
+            store,
+            genreSelected: 'All'
         }
     },
     emits: ['text-searched', 'term-changed'],
     props: {
         buttonLabel: String
+    },
+    methods: {
+      prova() {
+        console.log('funziona' + this.genreSelected)
+      }
     }
   }
 </script>
 
 <template>
-  <form @submit.prevent="$emit('text-searched', searchedText)">
+  <form @submit.prevent="$emit('text-searched', searchedText)" @change="prova">
         <label for="select-genre">Seleziona un genere:</label>
-        <select name="genres" id="select-genre">
+        <select name="genres" id="select-genre" v-model="genreSelected">
           <option value="All">Tutti</option>
-          <!-- <option v-for="store" value=""></option> -->
+          <option v-for="genre in store.allGenres" :value="genre.name">{{ genre.name }}</option>
         </select>
           
         <input type="text" v-model.trim="searchedText" @keyup="$emit('term-changed', searchedText)">
@@ -32,7 +38,7 @@ import {store} from '../assets/data/store.js'
   form {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 30px;
 
       label {
         color: white;

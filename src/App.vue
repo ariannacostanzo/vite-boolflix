@@ -60,55 +60,23 @@
         const url = `${baseUrl}/genre/${mode}/list?api_key=${apiKey}&language=${apiLanguage}`
         axios.get(url).then((res) => {
           store[collection] = res.data.genres
-          // console.log(store[collection])
-
-          // store.allGenres = store[collection].filter((item)=> {
-          //   return !store.allGenres.some((existingGenre) => existingGenre.id === item.id)
-          // })
-
-          // store[collection].forEach(element => {
-          //   console.log(element)
-          //   if (!store.allGenres.includes(element.id)) {
-          //     console.log('non lo contiene già')
-              
-          //     store.allGenres.push(element)
-          //   } else {
-          //     console.log('lo contiene')
-
-          //   }
-          // });
           //pusho su storeAllGenres i generi in comune una volta e quelli non in comune
           store[collection].forEach(element => {
-            console.log(element)
             if (!store.allGenres.some(existingElement => existingElement.id === element.id)) {
-              console.log('non lo contiene già')
-              
               store.allGenres.push(element)
             } else {
-              console.log('lo contiene')
-
+              return
             }
           });
-
-          console.log(store.allGenres)
-
-          
         })
       },
-      joinGenres() {
-        this.fetchGenres('movie', 'movieGenres');
-        this.fetchGenres('tv', 'tvGenres');
-
-
-      }
     },
     components: {
       AppHeader, AppMain
     },
     created() {
-      // this.fetchGenres('movie', 'movieGenres');
-      // this.fetchGenres('tv', 'tvGenres');
-      this.joinGenres()
+      this.fetchGenres('movie', 'movieGenres');
+      this.fetchGenres('tv', 'tvGenres');
     }
   }
 </script>
