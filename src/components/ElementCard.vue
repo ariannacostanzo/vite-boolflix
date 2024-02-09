@@ -1,5 +1,5 @@
 <script>
-import {dataUrlConfig} from '../assets/data/data'
+import { dataUrlConfig } from '../assets/data/data'
 import axios from 'axios';
 export default {
     name: 'ElementCard',
@@ -32,8 +32,8 @@ export default {
     },
     methods: {
         getActorsUrl(collection) {
-            const {baseUrl, apiKey} = dataUrlConfig;
-            const url =  `${baseUrl}/${collection}/${this.element.id}/credits?api_key=${apiKey}`
+            const { baseUrl, apiKey } = dataUrlConfig;
+            const url = `${baseUrl}/${collection}/${this.element.id}/credits?api_key=${apiKey}`
             return url
         },
         fetchActors() {
@@ -41,8 +41,9 @@ export default {
             const url = this.getActorsUrl(collection)
 
             axios.get(url).then(res => {
-                const firstFiveActors = res.data.cast.slice(0,5);
+                const firstFiveActors = res.data.cast.slice(0, 5);
                 const actorsName = firstFiveActors.map((actor) => {
+                    console.log(res)
                     return actor.name
                 })
                 this.actorsName = actorsName
@@ -67,21 +68,19 @@ export default {
                 <!-- potevo anche fare un v-for e poi un ternario della classe fa-solid o regular -->
                 <!-- <p> <i v-for="n in 5" :key="n" class="fa-star" :class="n <= vote ? 'fas' : 'far'"></i></p> -->
                 <p class="element-stars" v-html="starRating"></p>
-                <div class="actors">
+                <div class="actors" v-if="actorsName">
                     <p><strong>Cast: </strong></p>
                     <p>
                         <span v-for="(actor, i) in actorsName">
                             {{ actor }}<span v-if="i !== actorsName.length - 1">, </span>
                             <span v-else>...</span>
-                    </span></p>
-                    
+                        </span>
+                    </p>
                 </div>
                 <div class="element-overview">
                     <p><strong>Trama: </strong></p>
                     <p>{{ element.overview }}</p>
-                    
                 </div>
-                
             </div>
         </figure>
     </div>
@@ -94,7 +93,7 @@ export default {
     cursor: pointer;
 
     &:hover .overlay-info {
-        display: block;
+        opacity: 1;
     }
 
     .language-img {
@@ -144,10 +143,10 @@ export default {
         background-color: rgba(0, 0, 0, .9);
         padding: 1rem;
         font-size: 1.1rem;
-        display: none;
+        opacity: 0;
         border-radius: 10px;
         overflow-y: auto;
-
+        transition: .5s ease-in-out;
 
     }
 
@@ -189,7 +188,8 @@ export default {
     // }
 
 
-    .element-overview, .actors {
+    .element-overview,
+    .actors {
         font-size: .9rem;
 
         p {

@@ -43,7 +43,7 @@
       },
       //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
       cambioTermine(term) {
-        console.log('funziona', term)
+        console.log(term)
       },
       //rendo dinamica la mia url con una funzione
       getCollectionUrl(mode, collection, term) {
