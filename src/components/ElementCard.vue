@@ -42,14 +42,12 @@ export default {
                 <!-- <p> <i v-for="n in 5" :key="n" class="fa-star" :class="n <= vote ? 'fas' : 'far'"></i></p> -->
                 <p class="element-stars" v-html="starRating"></p>
                 <p class="element-overview"><strong>Trama: <br></strong>{{ element.overview }}</p>
-                <!-- <p>{{ element.id }}</p> -->
             </div>
         </figure>
     </div>
 </template>
 
 <style lang="scss" scoped>
-// perchè a .element-stars i  color: yellow non funziona?
 .card {
     flex-basis: 25%;
     padding: 2rem 1rem;
