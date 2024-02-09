@@ -8,5 +8,7 @@ export const store = reactive({
     tvShowsActors: [],
     movieGenres: [],
     tvGenres: [],
-    allGenres: []
+    allGenres: [],
+    filteredMovies: [],
+    filteredTvShows: []
 })

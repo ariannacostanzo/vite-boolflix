@@ -71,8 +71,15 @@
           });
         })
       },
+      //riesco a fetchare il nome del genere, ora devo filtrare i film il cui id di genre
+      //corrisponde all'id di genere del nome del genere scelto. 
+      //Per questo ho bisogno di store.allGenres
       selectedGenre(genre) {
-        console.log(genre)
+        this.genreSelected = genre
+        console.log(this.genreSelected)
+        store.filteredMovies = store.movies.filter((movie) => {
+          console.log(movie.genre)
+        })
       }
     },
     components: {

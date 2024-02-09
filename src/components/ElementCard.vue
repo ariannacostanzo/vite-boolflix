@@ -1,6 +1,7 @@
 <script>
 import { dataUrlConfig } from '../assets/data/data'
 import axios from 'axios';
+import {store} from '../assets/data/store'
 export default {
     name: 'ElementCard',
     data() {
@@ -47,7 +48,8 @@ export default {
                 })
                 this.actorsName = actorsName
             })
-        }
+        },
+        
     },
     created() {
         this.fetchActors()
