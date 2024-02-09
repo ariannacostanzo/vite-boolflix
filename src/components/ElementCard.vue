@@ -1,6 +1,13 @@
 <script>
+import {dataUrlConfig} from '../assets/data/data'
+import axios from 'axios';
 export default {
     name: 'ElementCard',
+    data() {
+        return {
+            actorsName: []
+        }
+    },
     props: {
         element: Object,
         type: String,
@@ -21,11 +28,30 @@ export default {
 
             return `<strong style="color: white;">Voto: </strong>${fullStars.repeat(transformedVote)}${emptyStars.repeat(5 - transformedVote)}`
         },
-        type() {
-            return this.type
-        }
 
     },
+    methods: {
+        getActorsUrl(collection) {
+            const {baseUrl, apiKey} = dataUrlConfig;
+            const url =  `${baseUrl}/${collection}/${this.element.id}/credits?api_key=${apiKey}`
+            return url
+        },
+        fetchActors() {
+            const collection = this.type === 'Movies' ? 'movie' : 'tv'
+            const url = this.getActorsUrl(collection)
+
+            axios.get(url).then(res => {
+                const firstFiveActors = res.data.cast.slice(0,5);
+                const actorsName = firstFiveActors.map((actor) => {
+                    return actor.name
+                })
+                this.actorsName = actorsName
+            })
+        }
+    },
+    created() {
+        this.fetchActors()
+    }
 }
 </script>
 
@@ -41,7 +67,21 @@ export default {
                 <!-- potevo anche fare un v-for e poi un ternario della classe fa-solid o regular -->
                 <!-- <p> <i v-for="n in 5" :key="n" class="fa-star" :class="n <= vote ? 'fas' : 'far'"></i></p> -->
                 <p class="element-stars" v-html="starRating"></p>
-                <p class="element-overview"><strong>Trama: <br></strong>{{ element.overview }}</p>
+                <div class="actors">
+                    <p><strong>Cast: </strong></p>
+                    <p>
+                        <span v-for="(actor, i) in actorsName">
+                            {{ actor }}<span v-if="i !== actorsName.length - 1">, </span>
+                            <span v-else>...</span>
+                    </span></p>
+                    
+                </div>
+                <div class="element-overview">
+                    <p><strong>Trama: </strong></p>
+                    <p>{{ element.overview }}</p>
+                    
+                </div>
+                
             </div>
         </figure>
     </div>
@@ -149,8 +189,12 @@ export default {
     // }
 
 
-    .element-overview {
+    .element-overview, .actors {
         font-size: .9rem;
+
+        p {
+            padding: .3rem;
+        }
     }
 }
 </style>

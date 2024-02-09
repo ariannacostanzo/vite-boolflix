@@ -38,15 +38,12 @@
         this.searchedTerm = item
         const searchMovieEndpoint = this.getCollectionUrl('search', 'movie', this.searchedTerm)
         const searchTvEndpoint = this.getCollectionUrl('search', 'tv', this.searchedTerm)
-        // console.log(searchMovieEndpoint)
-        // console.log(searchTvEndpoint)
         this.fetchData(searchMovieEndpoint, 'movies')
         this.fetchData(searchTvEndpoint, 'tvShows')
       },
       //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
       cambioTermine(term) {
-        // console.log('funziona', term)
-        this.fetchActors('movie', store.movieActors)
+        console.log('funziona', term)
       },
       //rendo dinamica la mia url con una funzione
       getCollectionUrl(mode, collection, term) {
@@ -55,22 +52,6 @@
         const url =  `${baseUrl}/${mode}/${collection}?api_key=${apiKey}&language=${apiLanguage}&query=${term}`
         return url
       },
-      // fetchActors(mode, collection) {
-      //   const actorsEndpoint = this.getActorsUrl(mode, 597)
-      //   axios.get(actorsEndpoint).then(res => {
-          
-      //     const firstFiveActors = res.data.cast.slice(0,5);
-      //     store[collection] = firstFiveActors
-          
-      //     // console.log(store.movieActors)
-      //     // console.log(store.tvShowsActors)
-      //   }).catch(err => console.log(err))
-      // },
-      // getActorsUrl(collection, movieId) {
-      //   const {baseUrl, apiKey} = dataUrlConfig
-      //   const url =  `${baseUrl}/${collection}/${movieId}/credits?api_key=${apiKey}`
-      //   return url
-      // }
     },
     components: {
       AppHeader, AppMain
@@ -81,7 +62,7 @@
 <template>
   <!-- quale funzionamento voglio? che appena scrivo qualcosa chiamo subito la Api o che la chiamo quando finisco di scrivere?
   dopo aver stabilito questo rimuoverò o text-searched o term-changed  -->
-  <AppHeader @text-searched="getSearchText" @term-changed="getSearchText"/>
+  <AppHeader @text-searched="getSearchText" @term-changed="cambioTermine"/>
 
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
     <p>Cerca un film o una serie TV</p>
