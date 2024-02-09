@@ -9,7 +9,7 @@ import {store} from '../assets/data/store.js'
             genreSelected: 'All'
         }
     },
-    emits: ['text-searched', 'term-changed'],
+    emits: ['text-searched', 'term-changed', 'genre-selected'],
     props: {
         buttonLabel: String
     },
@@ -22,7 +22,7 @@ import {store} from '../assets/data/store.js'
 </script>
 
 <template>
-  <form @submit.prevent="$emit('text-searched', searchedText)" @change="prova">
+  <form @submit.prevent="$emit('text-searched', searchedText)" @change="$emit('genre-selected', genreSelected)">
         <label for="select-genre">Seleziona un genere:</label>
         <select name="genres" id="select-genre" v-model="genreSelected">
           <option value="All">Tutti</option>
