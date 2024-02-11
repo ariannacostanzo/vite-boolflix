@@ -26,7 +26,7 @@ import {store} from '../assets/data/store.js'
         <label for="select-genre">Seleziona un genere:</label>
         <select name="genres" id="select-genre" v-model="genreSelected">
           <option value="All">Tutti</option>
-          <option v-for="genre in store.allGenres" :value="genre.name">{{ genre.name }}</option>
+          <option v-for="genre in store.allGenres" :key="genre.id" :value="genre.id">{{ genre.name }}</option>
         </select>
           
         <input type="text" v-model.trim="searchedText" @keyup="$emit('term-changed', searchedText)">

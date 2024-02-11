@@ -15,7 +15,7 @@ export default {
 
 <template>
   <section>
-    <MainSection v-if="store.movies.length" :title="'Movies'" :elements="store.movies" />
+    <MainSection v-if="store.movies.length" :title="'Movies'" :elements="store.filteredMovies" />
   </section>
   <section>
     <MainSection v-if="store.tvShows.length" :title="'TV Shows'" :elements="store.tvShows" />

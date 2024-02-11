@@ -10,7 +10,7 @@
       return {
         searchedTerm: '',
         store,
-        genreSelected: 'All'
+        genreSelected: null
       }
     },
     methods: { 
@@ -78,7 +78,15 @@
         this.genreSelected = genre
         console.log(this.genreSelected)
         store.filteredMovies = store.movies.filter((movie) => {
-          console.log(movie.genre)
+          // if (movie.genre.includes(this.genreSelected)) {
+          //   console.log('lo include' + movie.genre, this.genreSelected)
+          // } else (
+          //   console.log('non lo include'+ movie.genre, this.genreSelected)
+          // )
+          return movie.genre.includes(this.genreSelected)
+        })
+        store.filteredTvShows = store.tvShows.filter(tvshow => {
+            return tvshow.genre.includes(this.genreSelected)
         })
       }
     },
@@ -95,7 +103,7 @@
 <template>
   <!-- quale funzionamento voglio? che appena scrivo qualcosa chiamo subito la Api o che la chiamo quando finisco di scrivere?
   dopo aver stabilito questo rimuoverò o text-searched o term-changed  -->
-  <AppHeader @text-searched="getSearchText" @term-changed="cambioTermine" @genre-selected="selectedGenre"/>
+  <AppHeader @text-searched="getSearchText" @term-changed="getSearchText" @genre-selected="selectedGenre"/>
 
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
     <p>Cerca un film o una serie TV</p>
