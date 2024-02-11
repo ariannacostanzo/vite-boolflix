@@ -71,23 +71,28 @@
           });
         })
       },
-      //riesco a fetchare il nome del genere, ora devo filtrare i film il cui id di genre
-      //corrisponde all'id di genere del nome del genere scelto. 
-      //Per questo ho bisogno di store.allGenres
+      //se il genere è all vedo tutti i film e le serie, se cambio l'option filtro in base al genere
       selectedGenre(genre) {
         this.genreSelected = genre
-        console.log(this.genreSelected)
-        store.filteredMovies = store.movies.filter((movie) => {
-          // if (movie.genre.includes(this.genreSelected)) {
-          //   console.log('lo include' + movie.genre, this.genreSelected)
-          // } else (
-          //   console.log('non lo include'+ movie.genre, this.genreSelected)
-          // )
-          return movie.genre.includes(this.genreSelected)
-        })
-        store.filteredTvShows = store.tvShows.filter(tvshow => {
-            return tvshow.genre.includes(this.genreSelected)
-        })
+        console.log(genre)
+        if (this.genreSelected === 'All' || !this.genreSelected) {
+          
+          //se non metto il set time out l'array mi ritorna vuoto e non vedo nietne
+          setTimeout(()=> {
+            store.isLoading = true
+            store.filteredMovies = store.movies;
+            store.filteredTvShows = store.tvShows;
+          }, 1000)
+          // store.filteredMovies = store.movies;
+          // store.filteredTvShows = store.tvShows;
+        } else {
+            store.filteredMovies = store.movies.filter((movie) => {
+            return movie.genre.includes(this.genreSelected)
+            })
+            store.filteredTvShows = store.tvShows.filter(tvshow => {
+            return tvshow.genre.includes(this.genreSelected) 
+            })
+        }
       }
     },
     components: {
@@ -103,11 +108,12 @@
 <template>
   <!-- quale funzionamento voglio? che appena scrivo qualcosa chiamo subito la Api o che la chiamo quando finisco di scrivere?
   dopo aver stabilito questo rimuoverò o text-searched o term-changed  -->
-  <AppHeader @text-searched="getSearchText" @term-changed="getSearchText" @genre-selected="selectedGenre"/>
+  <AppHeader @text-searched="getSearchText" @term-changed="cambioTermine" @genre-selected="selectedGenre"/>
 
   <div class="placeholder" v-if="!store.movies.length && !store.tvShows.length">
     <p>Cerca un film o una serie TV</p>
   </div>
+
 
   <div class="container" v-if="store.movies.length || store.tvShows.length">
     <AppMain/>

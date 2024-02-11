@@ -15,15 +15,13 @@ export default {
 
 <template>
   <section>
-    <MainSection v-if="store.movies.length" :title="'Movies'" :elements="store.filteredMovies" />
+    <MainSection v-if="store.filteredMovies.length" :title="'Movies'" :elements="store.filteredMovies" />
   </section>
   <section>
-    <MainSection v-if="store.tvShows.length" :title="'TV Shows'" :elements="store.tvShows" />
+    <MainSection v-if="store.filteredTvShows.length" :title="'TV Shows'" :elements="store.filteredTvShows" />
   </section>
 </template>
 
 <style lang="scss" scoped>
-section {
-  margin-bottom: 3rem;
-}
+
 </style>
