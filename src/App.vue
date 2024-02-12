@@ -42,6 +42,8 @@
         const searchTvEndpoint = this.getCollectionUrl('search', 'tv', this.searchedTerm)
         this.fetchData(searchMovieEndpoint, 'movies')
         this.fetchData(searchTvEndpoint, 'tvShows')
+        this.fetchData(searchMovieEndpoint, 'filteredMovies')
+        this.fetchData(searchTvEndpoint, 'filteredTvShows')
         
       },
       //funzione che mi serve come prova, nella realtà userei per @term-changed getSearchText
@@ -77,14 +79,8 @@
         console.log(genre)
         if (this.genreSelected === 'All' || !this.genreSelected) {
           
-          //se non metto il set time out l'array mi ritorna vuoto e non vedo nietne
-          setTimeout(()=> {
-            store.isLoading = true
-            store.filteredMovies = store.movies;
-            store.filteredTvShows = store.tvShows;
-          }, 1000)
-          // store.filteredMovies = store.movies;
-          // store.filteredTvShows = store.tvShows;
+          store.filteredMovies = store.movies;
+          store.filteredTvShows = store.tvShows;
         } else {
             store.filteredMovies = store.movies.filter((movie) => {
             return movie.genre.includes(this.genreSelected)
